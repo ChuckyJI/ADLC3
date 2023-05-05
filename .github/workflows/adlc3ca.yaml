@@ -5,6 +5,11 @@ jobs:
   CAforCICD:
     runs-on: ubuntu-latest
     steps:
+    - name: Name Regular Expression Check
+      uses: goshencollege/validate-branch-name@v1.0.1
+      with:
+        pattern: "^release/v[0-9]+.[0-9]+$"
+
     - name: check out
       uses: actions/checkout@v3
       with:
@@ -20,3 +25,55 @@ jobs:
       with:
         railway_token: ${{ secrets.RAILWAY_TOKEN }}
         service: "ADLC3"
+
+    - name: Send my information
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+         payload: |
+          {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                   "text": "*DipSA 56 CICD Submission*"
+                }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                   "type": "mrkdwn",
+                   "text": "*Name:* Gao Zhide                      *Email:* E1112941@u.nus.edu"
+                }
+                },
+                {
+                "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                   "text": "*Matriculation:* A0269558H     *Repository:* https://github.com/ChuckyJI/ADLC3"
+                }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "https://adlc3-production.up.railway.app/"
+                  },
+                  "accessory": {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Go",
+                      "emoji": true
+                    },
+                    "value": "click_me_123",
+                    "url": "https://adlc3-production.up.railway.app/",
+                    "action_id": "button-action"
+                  }
+                }
+              ]
+            }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
