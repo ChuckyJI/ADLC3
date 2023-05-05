@@ -3,18 +3,12 @@ on:
   push:
     branches:
       - master
-      - feature*/
+      - "^release/v[0-9]+.[0-9]+$"
 
 jobs:
   CAforCICD:
     runs-on: ubuntu-latest
     steps:
-    - name: Name Regular Expression Check
-      if: ${{ github.ref != 'master' }}
-      uses: goshencollege/validate-branch-name@v1.0.1
-      with:
-        pattern: "^release/v[0-9]+.[0-9]+$"
-
     - name: check out
       uses: actions/checkout@v3
       with:
