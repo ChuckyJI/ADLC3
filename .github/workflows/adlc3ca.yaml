@@ -4,7 +4,6 @@ on: [push]
 jobs:
   CAforCICD:
     runs-on: ubuntu-latest
-
     - name: check out
       uses: actions/checkout@v3
       with:
