@@ -52,7 +52,7 @@ jobs:
                 "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                   "text": "*Matriculation:* A0269558H     *Repository:* https://github.com/ChuckyJI/ADLC3"
+                   "text": "*Matriculation:* A0269558H     *Repository:* {{ secrets.SUBMIT_LINK }}"
                 }
                 },
                 {
