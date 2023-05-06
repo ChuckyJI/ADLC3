@@ -3,13 +3,20 @@ on:
   push:
     branches:
       - master
-      - "^release/v[0-9]+.[0-9]+$"
+      - release/*
 
 jobs:
   CAforCICD:
     if: github.event.head_commit.message != '#NORUN'
     runs-on: ubuntu-latest
     steps:
+    - name: Name Regular Expression Check
+      uses: goshencollege/validate-branch-name@v1.0.1
+      with:
+        pattern: "^release/v[0-9]+.[0-9]+$"
+
+    - name: print out
+      run: echo "Branch name is ${{ github.ref}}" 
 
     - name: check out
       uses: actions/checkout@v3
