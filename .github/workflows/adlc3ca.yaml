@@ -2,8 +2,7 @@ name: my ADLC3 CA
 on: 
   push:
     branches:
-      - master
-      - release/*
+      - release*
 
 jobs:
   CAforCICD:
