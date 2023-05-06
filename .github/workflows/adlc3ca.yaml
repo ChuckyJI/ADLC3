@@ -37,7 +37,7 @@ jobs:
                 {
                   "type": "section",
                   "text": {
-                    "type": "mrkdwn",
+                   "type": "mrkdwn",
                    "text": "*DipSA 56 CICD Submission*"
                 }
                 },
@@ -52,7 +52,7 @@ jobs:
                 "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                   "text": "*Matriculation:* A0269558H     *Repository:* {{ secrets.SUBMIT_LINK }}"
+                   "text": "*Matriculation:* A0269558H     *Repository:* ${{github.server_url}}/${{github.repository}}"
                 }
                 },
                 {
